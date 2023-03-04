@@ -1,0 +1,26 @@
+<div class="container-fluid text-secondary py-5">
+  <h4 class="text-white">Top News</h4>
+  <div class="row">
+    <div
+      class="col-lg-3 d-flex mt-3 mb-3 align-items-stretch"
+      *ngFor="let headLines of newsResult"
+    >
+      <div class="card">
+        <img
+          src="{{ headLines.urlToImage }}"
+          width="100%"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ headLines.title }}</h5>
+          <a
+            href="{{ headLines.url }}"
+            target="_blank"
+            class="btn btn-dark btn-sm-2"
+            >Read More</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

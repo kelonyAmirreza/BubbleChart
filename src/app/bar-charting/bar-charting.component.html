@@ -1,24 +1,24 @@
 <div class="text-secondary px-4 py-5 text-center">
   <div class="py-5">
     <div class="chart-container chart-style col-10 mx-auto">
-      <canvas id="bubbleChartFig1">{{ chart1 }}</canvas>
+      <canvas id="bubbleChartFig2">{{ chart2 }}</canvas>
       <div class="mx-auto" style="max-width: 30%">
         <label
-          for="customRange1"
+          for="customRange2"
           class="form-label text-white pt-4"
           style="font-size: x-large"
           >% Best Buyers</label
         >
         <input
           type="range"
-          #range1
+          #range2
           class="form-range"
-          id="customRange1"
+          id="customRange2"
           value="27"
           min="10"
           max="100"
           oninput="this.nextElementSibling.value = this.value + `%`"
-          (change)="updateData1(range1.value)"
+          (change)="updateData2(range2.value)"
         />
         <output class="text-white">27%</output>
       </div>

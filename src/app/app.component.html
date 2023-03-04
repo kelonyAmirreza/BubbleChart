@@ -1,10 +1,44 @@
-<div class="text-secondary px-4 py-5 text-center">
-  <div class="py-5">
-    <!-- <h1 class="display-8 fw-bold text-white">Sellers Bubble Chart</h1> -->
-    <app-bubble-charting-component></app-bubble-charting-component>
-    <hr class="horizontal_line" />
-    <!-- <app-upload></app-upload> -->
-    <hr class="horizontal_line" />
-    <!-- <app-graph></app-graph> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto justify-content-center mx-auto">
+      <li class="nav-item" style="padding-left: 200px">
+        <a
+          class="nav-link"
+          style="font-weight: bolder; font-size: large"
+          routerLink=""
+          >Bubble Chart</a
+        >
+      </li>
+      <li class="nav-item" style="padding-left: 350px; padding-right: 400px">
+        <a
+          class="nav-link"
+          style="font-weight: bolder; font-size: large"
+          routerLink=""
+          routerLink="bar-chart"
+          >Bar Chart</a
+        >
+      </li>
+      <li class="nav-item" style="padding-right: 200px">
+        <a
+          class="nav-link"
+          style="font-weight: bolder; font-size: large"
+          routerLink=""
+          routerLink="web3-news"
+          >News</a
+        >
+      </li>
+    </ul>
   </div>
-</div>
+</nav>
+<router-outlet></router-outlet>

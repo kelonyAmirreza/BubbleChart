@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 import { BackendService } from '../backend.service';
 import * as XLSX from 'xlsx';
 import 'chartjs-adapter-moment';
+import { weekdays } from 'moment';
 
 @Component({
   selector: 'app-bubble-charting-component',
@@ -14,20 +15,6 @@ export class BubbleChartingComponentComponent {
   public chart1: any;
 
   private excelDataRaw: any;
-
-  private dataSets1: any = [
-    {
-      label: 'First Dataset',
-      data: [
-        {
-          x: 'Friday, January 28, 2022',
-          y: 30,
-          r: 5,
-        },
-      ],
-      backgroundColor: 'rgba(30,144,255,0.6)',
-    },
-  ];
 
   private options1: any = {
     aspectRatio: 2.5,
@@ -122,10 +109,16 @@ export class BubbleChartingComponentComponent {
 
   /* create the chart element for the FE*/
   createChart1() {
-    this.chart1 = new Chart('bubbleChartFig', {
+    this.chart1 = new Chart('bubbleChartFig1', {
       type: 'bubble', //this denotes tha type of chart
       data: {
-        datasets: this.dataSets1,
+        datasets: [
+          {
+            label: 'Men',
+            data: [{}],
+            backgroundColor: 'rgba(30,144,255,0.6)',
+          },
+        ],
       },
       options: this.options1,
     });
@@ -153,8 +146,8 @@ export class BubbleChartingComponentComponent {
             header: ws ? 0 : 1,
             dateNF: 'dd/mm/yyyy',
           });
+
           this.updateData1(27);
-          //   customRange1
         };
       });
   }
@@ -248,11 +241,13 @@ export class BubbleChartingComponentComponent {
         label: 'MEN',
         data: _data1,
         backgroundColor: 'rgba(30,144,255,0.6)',
+        borderColor: 'rgb(30,144,255)',
       },
       {
         label: 'WOMEN',
         data: _data2,
-        backgroundColor: 'rgb(105,105,105,0.6)',
+        backgroundColor: 'rgba(105,105,105,0.6)',
+        borderColor: 'rgb(105,105,105)',
       },
     ];
     this.chart1.update();
