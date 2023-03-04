@@ -1,0 +1,23 @@
+<div class="chart-container chart-style col-11 mx-auto">
+  <canvas id="bubbleChartFig">{{ chart1 }}</canvas>
+  <div class="mx-auto" style="max-width: 30%">
+    <label
+      for="customRange1"
+      class="form-label text-white pt-4"
+      style="font-size: x-large"
+      >% Best Buyers</label
+    >
+    <input
+      type="range"
+      #range1
+      class="form-range"
+      id="customRange1"
+      value="27"
+      min="10"
+      max="100"
+      oninput="this.nextElementSibling.value = this.value + `%`"
+      (change)="updateData1(range1.value)"
+    />
+    <output class="text-white">27%</output>
+  </div>
+</div>
