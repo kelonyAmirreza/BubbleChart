@@ -12,6 +12,7 @@ import { NewsSectionComponent } from './news-section/news-section.component';
 
 import { NewsServiceService } from './news-service.service';
 import { BarChartingComponent } from './bar-charting/bar-charting.component';
+import { NewsFooterComponent } from './news-footer/news-footer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { BarChartingComponent } from './bar-charting/bar-charting.component';
     BubbleChartingComponentComponent,
     NewsSectionComponent,
     BarChartingComponent,
+    NewsFooterComponent,
   ],
   imports: [BrowserModule, NgbModule, AppRoutingModule, HttpClientModule],
   providers: [],

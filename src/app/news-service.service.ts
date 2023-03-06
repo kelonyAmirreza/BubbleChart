@@ -8,8 +8,17 @@ import { HttpClient } from '@angular/common/http';
 export class NewsServiceService {
   constructor(private http: HttpClient) {}
 
-  private newApi =
-    ' https://newsapi.org/v2/everything?q=web3&from=2023-02-04&sortBy=publishedAt&apiKey=ecaa0e0700174143a05cee2870012a95';
+  nowDat = new Date();
+  yyyy = this.nowDat.getFullYear();
+  mm = this.nowDat.getMonth(); // Months start at 0!
+  dd = this.nowDat.getDate();
+  stringDate =
+    this.yyyy.toString() +
+    '-' +
+    (this.mm + 1).toString() +
+    '-' +
+    (this.dd - 3).toString();
+  private newApi = `https://newsapi.org/v2/everything?q=businesses&domains=bbc.co.uk,bbc.com,bbc.it&from=${this.stringDate}&sortBy=publishedAt&apiKey=ecaa0e0700174143a05cee2870012a95`;
 
   topNews(): Observable<any> {
     return this.http.get(this.newApi);

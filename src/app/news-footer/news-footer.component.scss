@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  border-radius: 10px;
+  border: 3px solid black;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  background-color: rgba(61, 62, 65, 0.5);
+  height: 50px;
+  overflow: hidden;
+  margin-left: 5%;
+}
+
+#scroll-text {
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+
+  -moz-animation: my-animation 110s linear infinite;
+  -webkit-animation: my-animation 110s linear infinite;
+  animation: my-animation 110s linear infinite;
+
+  font-size: x-large;
+  position: relative;
+  bottom: 15px;
+  width: max-content;
+}
+
+#scroll-text:hover {
+  /* animation properties */
+
+  -moz-animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+
+  font-size: x-large;
+  position: relative;
+  bottom: 15px;
+  width: max-content;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from {
+    -moz-transform: translateX(10%);
+  }
+  to {
+    -moz-transform: translateX(-10%);
+  }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from {
+    -webkit-transform: translateX(10%);
+  }
+  to {
+    -webkit-transform: translateX(-10%);
+  }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(10%);
+    -webkit-transform: translateX(10%);
+    transform: translateX(10%);
+  }
+  to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
