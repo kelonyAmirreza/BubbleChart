@@ -117,7 +117,9 @@ export class BarChartingComponent {
   /* Read data from excel file in asset folder*/
   read() {
     this.backendService
-      .get('assets/data.xlsx', { responseType: 'blob' })
+      .get('assets/extracted_data.xlsx', {
+        responseType: 'blob',
+      })
       .subscribe((data: any) => {
         const reader: FileReader = new FileReader();
         reader.readAsBinaryString(data);

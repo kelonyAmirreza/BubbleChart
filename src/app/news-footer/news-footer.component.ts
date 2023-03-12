@@ -12,11 +12,10 @@ export class NewsFooterComponent {
   newsResultFooter: string = '';
   ngOnInit(): void {
     this.service.topNews().subscribe((result) => {
-      console.log(result);
+      // console.log(result);
       this.newsResultFooter = '';
       for (let i = 0; i < result.articles.length; i++) {
         this.newsResultFooter += result.articles[i].description + '   |   ';
-        console.log(this.newsResultFooter);
       }
     });
   }

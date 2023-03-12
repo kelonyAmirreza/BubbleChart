@@ -3,7 +3,6 @@ import Chart from 'chart.js/auto';
 import { BackendService } from '../backend.service';
 import * as XLSX from 'xlsx';
 import 'chartjs-adapter-moment';
-import { weekdays } from 'moment';
 
 @Component({
   selector: 'app-bubble-charting-component',
@@ -146,6 +145,8 @@ export class BubbleChartingComponentComponent {
             header: ws ? 0 : 1,
             dateNF: 'dd/mm/yyyy',
           });
+
+          console.log(this.excelDataRaw);
 
           this.updateData1(27);
         };
