@@ -139,53 +139,32 @@ export class BarChartingComponent {
             dateNF: 'dd/mm/yyyy',
           });
 
-          this.updateData2(27);
+          this.updateData2(1);
         };
       });
   }
 
   updateData2(bestPercent: any) {
-    let _excelData: any = {};
-    for (let i = 0; i < this.excelDataRaw.length; i++) {
-      if (_excelData[`${this.excelDataRaw[i]['Nome']}`] === undefined) {
-        _excelData[`${this.excelDataRaw[i]['Nome']}`] = {
-          'Numero di contratti venduti': Number(
-            this.excelDataRaw[i]['Numero di contratti venduti']
-          ),
-          Sesso: this.excelDataRaw[i]['Sesso'],
-          'Somma guadagnata in euro': Number(
-            this.excelDataRaw[i]['Somma guadagnata in euro']
-          ),
-        };
-      } else {
-        _excelData[`${this.excelDataRaw[i]['Nome']}`][
-          'Numero di contratti venduti'
-        ] += Number(this.excelDataRaw[i]['Numero di contratti venduti']);
-        _excelData[`${this.excelDataRaw[i]['Nome']}`][
-          'Somma guadagnata in euro'
-        ] += Number(this.excelDataRaw[i]['Somma guadagnata in euro']);
-      }
-    }
-
     const percent = Number(bestPercent);
     const numberToConsider = Math.floor(
-      Object.keys(_excelData).length * percent * 0.01
+      this.excelDataRaw.length * percent * 0.01
     );
 
     let topSellers: any = {};
     for (let i = 0; i < numberToConsider; i++) {
       let maxBenefit = 0;
-      for (let key in _excelData) {
+      for (let ii = 0; ii < this.excelDataRaw.length; ii++) {
         if (
-          _excelData[`${key}`]['Somma guadagnata in euro'] > maxBenefit &&
-          topSellers[`${key}`] === undefined
+          this.excelDataRaw[ii]['Somma guadagnata in euro'] > maxBenefit &&
+          topSellers[`${this.excelDataRaw[ii]['Contract No']}`] === undefined
         ) {
-          maxBenefit = _excelData[`${key}`]['Somma guadagnata in euro'];
+          maxBenefit = this.excelDataRaw[ii]['Somma guadagnata in euro'];
         }
       }
-      for (let key in _excelData) {
-        if (_excelData[`${key}`]['Somma guadagnata in euro'] === maxBenefit) {
-          topSellers[`${key}`] = i;
+
+      for (let ii = 0; ii < this.excelDataRaw.length; ii++) {
+        if (this.excelDataRaw[ii]['Somma guadagnata in euro'] === maxBenefit) {
+          topSellers[`${this.excelDataRaw[ii]['Contract No']}`] = i;
         }
       }
     }
@@ -194,78 +173,78 @@ export class BarChartingComponent {
       _dataF: any = [0, 0, 0, 0, 0, 0, 0];
 
     for (let i = 0; i < this.excelDataRaw.length; i++) {
-      if (topSellers[`${this.excelDataRaw[i]['Nome']}`] !== undefined) {
-        if (this.excelDataRaw[i]['Sesso'] === 'F') {
-          switch (this.excelDataRaw[i]['Data'].split(',')[0]) {
-            case 'Monday':
+      if (topSellers[`${this.excelDataRaw[i]['Contract No']}`] !== undefined) {
+        if (this.excelDataRaw[i]['PH Gender'] === 'Female') {
+          switch (this.excelDataRaw[i]['Application Day']) {
+            case 'Mon':
               _dataF[0] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Tuesday':
+            case 'Tue':
               _dataF[1] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Wednesday':
+            case 'Wed':
               _dataF[2] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Thursday':
+            case 'Thu':
               _dataF[3] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Friday':
+            case 'Fri':
               _dataF[4] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Saturday':
+            case 'Sat':
               _dataF[5] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Sunday':
+            case 'Sun':
               _dataF[6] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
           }
-        } else if (this.excelDataRaw[i]['Sesso'] === 'M') {
-          switch (this.excelDataRaw[i]['Data'].split(',')[0]) {
-            case 'Monday':
+        } else if (this.excelDataRaw[i]['PH Gender'] === 'Male') {
+          switch (this.excelDataRaw[i]['Application Day']) {
+            case 'Mon':
               _dataM[0] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Tuesday':
+            case 'Tue':
               _dataM[1] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Wednesday':
+            case 'Wed':
               _dataM[2] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Thursday':
+            case 'Thu':
               _dataM[3] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Friday':
+            case 'Fri':
               _dataM[4] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Saturday':
+            case 'Sat':
               _dataM[5] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );
               break;
-            case 'Sunday':
+            case 'Sun':
               _dataM[6] += Number(
                 this.excelDataRaw[i]['Somma guadagnata in euro']
               );

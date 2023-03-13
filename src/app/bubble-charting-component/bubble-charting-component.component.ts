@@ -126,7 +126,9 @@ export class BubbleChartingComponentComponent {
   /* Read data from excel file in asset folder*/
   read() {
     this.backendService
-      .get('assets/data.xlsx', { responseType: 'blob' })
+      .get('assets/extracted_data.xlsx', {
+        responseType: 'blob',
+      })
       .subscribe((data: any) => {
         const reader: FileReader = new FileReader();
         reader.readAsBinaryString(data);
@@ -146,9 +148,7 @@ export class BubbleChartingComponentComponent {
             dateNF: 'dd/mm/yyyy',
           });
 
-          console.log(this.excelDataRaw);
-
-          this.updateData1(27);
+          this.updateData1(1);
         };
       });
   }
@@ -162,21 +162,21 @@ export class BubbleChartingComponentComponent {
     let _excelData: any = {};
 
     for (let i = 0; i < this.excelDataRaw.length; i++) {
-      if (_excelData[`${this.excelDataRaw[i]['Nome']}`] === undefined) {
-        _excelData[`${this.excelDataRaw[i]['Nome']}`] = {
-          'Numero di contratti venduti': Number(
-            this.excelDataRaw[i]['Numero di contratti venduti']
+      if (_excelData[`${this.excelDataRaw[i]['Contract No']}`] === undefined) {
+        _excelData[`${this.excelDataRaw[i]['Contract No']}`] = {
+          'Total Contribution': Number(
+            this.excelDataRaw[i]['Total Contribution']
           ),
-          Sesso: this.excelDataRaw[i]['Sesso'],
+          Sesso: this.excelDataRaw[i]['PH Gender'],
           'Somma guadagnata in euro': Number(
             this.excelDataRaw[i]['Somma guadagnata in euro']
           ),
         };
       } else {
-        _excelData[`${this.excelDataRaw[i]['Nome']}`][
-          'Numero di contratti venduti'
-        ] += Number(this.excelDataRaw[i]['Numero di contratti venduti']);
-        _excelData[`${this.excelDataRaw[i]['Nome']}`][
+        _excelData[`${this.excelDataRaw[i]['Contract No']}`][
+          'Total Contribution'
+        ] += Number(this.excelDataRaw[i]['Total Contribution']);
+        _excelData[`${this.excelDataRaw[i]['Contract No']}`][
           'Somma guadagnata in euro'
         ] += Number(this.excelDataRaw[i]['Somma guadagnata in euro']);
       }
@@ -189,8 +189,8 @@ export class BubbleChartingComponentComponent {
     let maxContarct: number = 0;
     for (let key in _excelData) {
       maxContarct =
-        _excelData[`${key}`]['Numero di contratti venduti'] > maxContarct
-          ? _excelData[`${key}`]['Numero di contratti venduti']
+        _excelData[`${key}`]['Total Contribution'] > maxContarct
+          ? _excelData[`${key}`]['Total Contribution']
           : maxContarct;
     }
 
@@ -205,7 +205,7 @@ export class BubbleChartingComponentComponent {
             ? [_excelData[`${key}`]['Somma guadagnata in euro'], key]
             : maxAmount;
       }
-      if (_excelData[`${maxAmount[1]}`]['Sesso'] === 'M') {
+      if (_excelData[`${maxAmount[1]}`]['Sesso'] === 'Male') {
         _data1.push({
           x:
             numberToConsider === 1
@@ -216,7 +216,7 @@ export class BubbleChartingComponentComponent {
           y: maxAmount[0],
           r:
             (65 / maxContarct) *
-              _excelData[`${maxAmount[1]}`]['Numero di contratti venduti'] +
+              _excelData[`${maxAmount[1]}`]['Total Contribution'] +
             5,
         });
       } else {
@@ -230,7 +230,7 @@ export class BubbleChartingComponentComponent {
           y: maxAmount[0],
           r:
             (65 / maxContarct) *
-              _excelData[`${maxAmount[1]}`]['Numero di contratti venduti'] +
+              _excelData[`${maxAmount[1]}`]['Total Contribution'] +
             5,
         });
       }
@@ -259,8 +259,8 @@ export class BubbleChartingComponentComponent {
 sample of json imported from excel
 {
     'Data': 'Friday, January 28, 2022',
-    'Nome': 'Federica',
-    'Numero di contratti venduti': '1',
+    'Contract No': 'Federica',
+    'Total Contribution': '1',
     'Random Number': '3',
     'Sesso': 'F',
     'Somma guadagnata in euro': ' € 965,407.00 ',
