@@ -148,7 +148,7 @@ export class BubbleChartingComponentComponent {
             dateNF: 'dd/mm/yyyy',
           });
 
-          this.updateData1(1);
+          this.updateData1(0.1);
         };
       });
   }
